@@ -1,6 +1,5 @@
 package com.company.invmngapi.model;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -8,8 +7,26 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="item")
+@Table(name = "item")
 public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long ID;
+    @Column(name = "category")
+    @NotBlank
+    private String category;
+    @Column(name = "name")
+    @NotBlank
+    private String name;
+    @Column(name = "description")
+    @Type(type = "text")
+    @NotBlank
+    private String description;
+    @Column(name = "stock")
+    @NotNull
+    private Long stock;
 
     public Item() {
     }
@@ -20,28 +37,6 @@ public class Item {
         this.description = description;
         this.stock = stock;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long ID;
-
-    @Column(name = "category")
-    @NotBlank
-    private String category;
-
-    @Column(name = "name")
-    @NotBlank
-    private String name;
-
-    @Column(name = "description")
-    @Type(type = "text")
-    @NotBlank
-    private String description;
-
-    @Column(name = "stock")
-    @NotNull
-    private Long stock;
 
     public Long getID() {
         return ID;

@@ -6,16 +6,15 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-//import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication//(exclude={MultipartAutoConfiguration.class}) //(exclude = {ErrorMvcAutoConfiguration.class})
+@SpringBootApplication
 @EnableCaching
 @EnableTransactionManagement
 public class InvmngApiApplication extends SpringBootServletInitializer {
 
 	/**
-	 * Extending SpringBootServletInitializer help us
-	 * to deploy this apps war file to tomcat outside of production.
+	 * Extending SpringBootServletInitializer helps us
+	 * deploy this app's war file to tomcat, outside of production.
 	 *
 	 * @author Ant Kaynak github/Exercon
 	 * */
@@ -29,5 +28,7 @@ public class InvmngApiApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(InvmngApiApplication.class, args);
 	}
+
+
 
 }

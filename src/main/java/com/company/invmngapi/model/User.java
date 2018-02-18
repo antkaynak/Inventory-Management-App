@@ -1,41 +1,39 @@
 package com.company.invmngapi.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
 
-    public User(){}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long ID;
+    @Column(name = "email")
+    @NotBlank
+    @Email
+    private String email;
+    @Column(name = "password")
+    @NotBlank
+    private String password;
+    @Column(name = "name")
+    @NotBlank
+    private String name;
+    @Column(name = "state")
+    private String state;
 
-    public User(String email, String password, String name, String state){
+    public User() {
+    }
+
+    public User(String email, String password, String name, String state) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.state = state;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long ID;
-
-    @Column(name="email")
-    @NotBlank
-    private String email;
-
-    @Column(name="password")
-    @NotBlank
-    private String password;
-
-    @Column(name="name")
-    @NotBlank
-    private String name;
-
-    @Column(name="state")
-    private String state;
 
     public Long getID() {
         return ID;
