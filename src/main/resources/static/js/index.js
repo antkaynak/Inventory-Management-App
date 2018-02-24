@@ -427,6 +427,11 @@ function userRegister() {
 
 }
 
+/**
+    Credits go to w3schools.com
+    I made some improvements with integer - string
+    conversions using type parameter.
+*/
 function sortTable(n, type) {
     let table, rows, switching, i, x, y, shouldSwitch, dir, switchCount = 0;
     table = document.getElementById("table");
