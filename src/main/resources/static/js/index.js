@@ -428,7 +428,7 @@ function userRegister() {
 }
 
 /**
-    Credits go to w3schools.com
+    All credits go to w3schools.com
     I made some improvements with integer - string
     conversions using type parameter.
 */
