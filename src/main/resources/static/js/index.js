@@ -3,7 +3,7 @@ let thread = false;
 let searchBy = 'all';
 
 $(document).ready(function () {
-    if (!checkIfLoggedIn() && !validateToken(Cookies.get('Authorization'))) {
+    if (!checkIfLoggedIn() || !validateToken(Cookies.get('Authorization'))) {
         let temp = new Template();
         $('body').append(temp.getLoginPage());
     } else {
@@ -92,7 +92,7 @@ function checkIfLoggedIn() {
 
 
 function validateToken(access_token) {
-    let result = $.ajax({
+    return $.ajax({
         type: "GET",
         headers: {
             'Accept': 'application/json',
@@ -101,8 +101,9 @@ function validateToken(access_token) {
         contentType: 'application/json; charset=utf-8',
         url: '/validate?access_token=' + access_token,
         //async: false
-    });
-    return result.statusText === 'success';
+    }).then(result => JSON.parse(result))
+        .then(result => result.statusText === 'success');
+    //return result.statusText === 'success';
 }
 
 function displayRegisterItem() {
@@ -427,11 +428,6 @@ function userRegister() {
 
 }
 
-/**
-    All credits go to w3schools.com
-    I made some improvements with integer - string
-    conversions using type parameter.
-*/
 function sortTable(n, type) {
     let table, rows, switching, i, x, y, shouldSwitch, dir, switchCount = 0;
     table = document.getElementById("table");
