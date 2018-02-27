@@ -11,11 +11,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +46,12 @@ public class EndPoints {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private AuthorizationServerTokenServices authorizationServerTokenServices;
+
+    @Autowired
+    private ConsumerTokenServices consumerTokenServices;
+
     @RequestMapping(path = "/validate", method = RequestMethod.GET)
     public ResponseEntity validateToken() {
         return new ResponseEntity(HttpStatus.OK);
@@ -58,6 +70,19 @@ public class EndPoints {
         user.setState("ACTIVE");
         userRepository.save(user);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(path="/oauth/logout", method = RequestMethod.GET)
+    public ResponseEntity logOut(Principal principal){
+        try{
+            OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
+            OAuth2AccessToken accessToken = authorizationServerTokenServices.getAccessToken(oAuth2Authentication);
+            consumerTokenServices.revokeToken(accessToken.getValue());
+            return new ResponseEntity(HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @RequestMapping(path = "/item/search", method = RequestMethod.GET)
