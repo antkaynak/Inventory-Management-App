@@ -92,7 +92,7 @@ function checkIfLoggedIn() {
 
 
 function validateToken(access_token) {
-    return $.ajax({
+    let result = $.ajax({
         type: "GET",
         headers: {
             'Accept': 'application/json',
@@ -100,10 +100,9 @@ function validateToken(access_token) {
         },
         contentType: 'application/json; charset=utf-8',
         url: '/validate?access_token=' + access_token,
-        //async: false
-    }).then(result => JSON.parse(result))
-        .then(result => result.statusText === 'success');
-    //return result.statusText === 'success';
+        async: false
+    });
+    return result.statusText === 'success';
 }
 
 function displayRegisterItem() {
@@ -381,9 +380,35 @@ function userLogin() {
 }
 
 function userLogout() {
-    localStorage.removeItem('ls.token');
-    Cookies.remove('Authorization');
-    window.location.reload(true);
+    $.ajax({
+        type: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        contentType: 'application/json; charset=utf-8',
+        url: '/oauth/logout?access_token=' + Cookies.get('Authorization'),
+        statusCode: {
+            200: function (e) {
+                localStorage.removeItem('ls.token');
+                Cookies.remove('Authorization');
+                window.location.reload(true);
+            },
+            400: function (e) {
+                alert("400 bad request");
+            },
+            401: function (e) {
+               alert("401 error");
+            },
+            403: function (e) {
+                alert("403 error")
+            }
+        },
+        error: function () {
+            console.log("error");
+        }
+    });
+
 }
 
 function userRegister() {
@@ -428,7 +453,7 @@ function userRegister() {
 
 }
 
-/**
+ /**
  All credits go to w3schools.com
  I made some improvements with integer - string
  conversions using type parameter.
