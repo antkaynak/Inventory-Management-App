@@ -91,7 +91,7 @@ use the spring boot backend as a microservice.
 * [Jquery](https://jquery.com/) - AJAX Requests 
 
 ## Known Bugs
-* When the page reloads and you have the authorization cookie but it is expired the table page flashed for a second.
+* When the page reloads and you have the authorization cookie but it is expired the table page flashes for a second.
 * There are no role management , so every user is admin.
 * Mobile support is bugged.
 * Throws exceptions in some extreme use cases.
