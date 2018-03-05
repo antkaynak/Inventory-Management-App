@@ -3,6 +3,11 @@
 A simple demo application to showcase Spring Data and Spring Boot OAuth2 implementations. This project is made for
 learning purposes but feel free to pull request!
 
+<img src="(https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/1.png width="300">
+<img src="(https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/2.png width="300">
+<img src="(https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/3.png width="300">                                                                                                        
+<img src="(https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/4.png width="300">                                                                                                       
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -15,6 +20,7 @@ These instructions will get you a copy of the project up and running on your loc
 * Responsive data table with sorting mechanism.
 * Search bar for searching specific entries.
 * Editing datas with live feedback.
+* Pagination with spring data and dynamic scroll data loading.
 
 ### Prerequisites
 
@@ -89,6 +95,7 @@ use the spring boot backend as a microservice.
 * There are no role management , so every user is admin.
 * Mobile support is bugged.
 * Throws exceptions in some extreme use cases.
+* The icons are not working.
 
 ## Contributing
 
