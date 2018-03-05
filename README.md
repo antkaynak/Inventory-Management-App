@@ -3,10 +3,10 @@
 A simple demo application to showcase Spring Data and Spring Boot OAuth2 implementations. This project is made for
 learning purposes but feel free to pull request!
 
-<img src="(https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/1.png width="300">
-<img src="(https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/2.png width="300">
-<img src="(https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/3.png width="300">                                                                                                        
-<img src="(https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/4.png width="300">                                                                                                       
+![alt](https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/1.png?v=4&s=200)
+![alt](https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/2.png?v=4&s=200)
+![alt](https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/3.png?v=4&s=200)
+![alt](https://github.com/Exercon/Inventory-Management-App/blob/master/screenshots/4.png?v=4&s=200)
 
 ## Getting Started
 
